@@ -29,6 +29,7 @@
     <spring-boot-admin.version>1.5.0</spring-boot-admin.version>
 
     <fluent-logger.version>0.3.2</fluent-logger.version>
+    <logback-more-appenders.version>1.4.2</logback-more-appenders.version>
   </properties>
 
   <build>
@@ -121,7 +122,7 @@
     <dependency>
       <groupId>com.sndyuk</groupId>
       <artifactId>logback-more-appenders</artifactId>
-      <version>1.4.2</version>
+      <version>${logback-more-appenders.version}</version>
     </dependency>
 
     <dependency>
