@@ -26,7 +26,7 @@ volumes:
 services:
 
   discovery-service:
-    image: drip-cloud/discovery-service
+    image: dclou/discovery-service:1.0-SNAPSHOT
     container_name: discovery-service
 
     depends_on: # https://docs.docker.com/compose/startup-order/

@@ -5,22 +5,22 @@
 version: '3'
 services:
 
-  zipkin-server:
-    image: drip-cloud/zipkin-service
+  zipkin-service:
+    image: dclou/zipkin-service:1.0-SNAPSHOT
     container_name: zipkin-service
     ports:
      - "9411:9411"
 
 
   admin-ui:
-    image: drip-cloud/admin-service
+    image: dclou/admin-service:1.0-SNAPSHOT
     container_name: admin-ui
     ports:
      - "7070:7070"
 
 
   auth-service:
-    image: drip-cloud/auth-service
+    image: dclou/auth-service:1.0-SNAPSHOT
     container_name: auth-service
     ports:
      - "9991:9991"
@@ -29,7 +29,7 @@ services:
 
 
   config-service:
-    image: drip-cloud/config-service
+    image: dclou/config-service:1.0-SNAPSHOT
     container_name: config-service
     ports:
      - "8888:8888"
@@ -38,7 +38,7 @@ services:
 
 
   gateway-service:
-    image: drip-cloud/gateway-service
+    image: dclou/gateway-service:1.0-SNAPSHOT
     container_name: gateway-service
     ports:
      - "8080:8080"
