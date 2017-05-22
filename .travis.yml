@@ -14,3 +14,5 @@ before_deploy:
 
 deploy:
   skip_cleanup: true
+  provider: script
+  script: mvn -B com.spotify:dockerfile-maven-plugin:push
