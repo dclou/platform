@@ -12,6 +12,4 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: |
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    mvn -B package -Pdocker_deploy
+  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; mvn -B package -Pdocker_deploy
