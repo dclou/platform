@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.3.RELEASE</version>
+    <version>1.4.5.RELEASE</version>
   </parent>
 
   <modules>
@@ -24,6 +24,15 @@
   </modules>
 
   <properties>
+    <docker.image.registry>docker.io</docker.image.registry>
+    <docker.image.prefix>platform</docker.image.prefix>
+    <docker.image.group>dclou</docker.image.group>
+    <docker.image.version>latest</docker.image.version>
+
+    <java.version>1.8</java.version>
+
+    <spring-cloud-dependencies.version>Dalston.RELEASE</spring-cloud-dependencies.version>
+
     <spring-boot-maven-plugin.version>1.2.2</spring-boot-maven-plugin.version>
 
     <spring-boot-admin.version>1.5.0</spring-boot-admin.version>
@@ -55,8 +64,8 @@
             </execution>
           </executions>
           <configuration>
-            <repository>dclou/${project.name}</repository>
-            <tag>${project.version}</tag>
+            <repository>${docker.image.registry}/${docker.image.group}/${docker.image.prefix}-${project.name}</repository>
+            <tag>${docker.image.version}</tag>
           </configuration>
         </plugin>
       </plugins>
@@ -68,7 +77,7 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Dalston.RELEASE</version>
+        <version>${spring-cloud-dependencies.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -96,6 +105,12 @@
   </dependencyManagement>
 
   <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-eureka</artifactId>

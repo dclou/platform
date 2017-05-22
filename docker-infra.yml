@@ -26,9 +26,10 @@ volumes:
 services:
 
   discovery-service:
-    image: dclou/discovery-service:1.0-SNAPSHOT
+    image: dclou/platform-discovery-service
     container_name: discovery-service
-
+    networks:
+      - platform
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
 
@@ -40,6 +41,8 @@ services:
   rabbit-mon:
     image: rabbitmq:3.6.9-management
     container_name: rabbit-mon
+    networks:
+      - platform
     ports:
         - "5671:5671"
         - "5672:5672"
@@ -61,6 +64,8 @@ services:
   db:
     image: mongo
     container_name: db
+    networks:
+      - platform
     volumes:
       - data-mongo:/data/db
 
@@ -68,6 +73,8 @@ services:
     build: ./docker-common/prometheus
     image: prometheus
     container_name: prometheus
+    networks:
+      - platform
     volumes:
       - data-prometheus:/prometheus
     ports:
@@ -76,6 +83,8 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
+    networks:
+      - platform
     volumes:
      - data-grafana:/var/lib/grafana
     ports:
@@ -87,6 +96,8 @@ services:
       build: ./docker-common/fluentd
       image: fluentd
       container_name: fluentd
+      networks:
+        - platform
       volumes:
        - data-logging:/fluentd/log
       ports:
@@ -97,15 +108,23 @@ services:
   elasticsearch:
     image: elasticsearch
     container_name: elasticsearch
+    networks:
+      - platform
     volumes:
       - data-elasticsearch:/usr/share/elasticsearch/data
 
   kibana:
     image: kibana
     container_name: kibana
+    networks:
+      - platform
     ports:
      - "5601:5601"
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     links:
      - elasticsearch
+
+networks:
+  platform:
+    driver: overlay

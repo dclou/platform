@@ -6,22 +6,28 @@ version: '3'
 services:
 
   zipkin-service:
-    image: dclou/zipkin-service:1.0-SNAPSHOT
+    image: dclou/platform-zipkin-service
     container_name: zipkin-service
+    networks:
+      - platform
     ports:
      - "9411:9411"
 
 
   admin-ui:
-    image: dclou/admin-service:1.0-SNAPSHOT
+    image: dclou/platform-admin-service
     container_name: admin-ui
+    networks:
+      - platform
     ports:
      - "7070:7070"
 
 
   auth-service:
-    image: dclou/auth-service:1.0-SNAPSHOT
+    image: dclou/platform-auth-service
     container_name: auth-service
+    networks:
+      - platform
     ports:
      - "9991:9991"
     #environment:
@@ -29,8 +35,10 @@ services:
 
 
   config-service:
-    image: dclou/config-service:1.0-SNAPSHOT
+    image: dclou/platform-config-service
     container_name: config-service
+    networks:
+      - platform
     ports:
      - "8888:8888"
     #environment:
@@ -38,8 +46,10 @@ services:
 
 
   gateway-service:
-    image: dclou/gateway-service:1.0-SNAPSHOT
+    image: dclou/platform-gateway-service
     container_name: gateway-service
+    networks:
+      - platform
     ports:
      - "8080:8080"
     #environment:
@@ -47,3 +57,6 @@ services:
 
 
 
+networks:
+  platform:
+    driver: overlay
