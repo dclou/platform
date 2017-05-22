@@ -13,7 +13,9 @@ eureka:
     serviceUrl:
       defaultZone: http://discovery-service:8761/eureka/
   instance:
+      prefer-ip-address: false
       lease-expiration-duration-in-seconds: 60
       lease-renewal-interval-in-seconds: 30
+      hostname: auth-service
 
 management.security.enabled: false

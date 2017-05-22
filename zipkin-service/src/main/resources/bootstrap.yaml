@@ -44,10 +44,10 @@ eureka:
     serviceUrl:
       defaultZone: http://discovery-service:8761/eureka/
   instance:
-      hostname: micro01-service
-      prefer-ip-address: true
+      prefer-ip-address: false
       lease-expiration-duration-in-seconds: 60
       lease-renewal-interval-in-seconds: 30
+      hostname: zipkin-service
 
 # Give the application a PORT default (ignored by PCF, will deploy on 80)
 server.port: 9411

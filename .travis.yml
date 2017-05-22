@@ -7,7 +7,7 @@ install:
   - docker pull java:8
 
 script:
-  - mvn test -B
+  - mvn test -B test
 
 before_deploy:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
@@ -15,4 +15,4 @@ before_deploy:
 deploy:
   skip_cleanup: true
   provider: script
-  script: mvn -B com.spotify:dockerfile-maven-plugin:push
+  script: mvn -B package -Pdocker_deploy

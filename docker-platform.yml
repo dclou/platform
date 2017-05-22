@@ -7,56 +7,22 @@ services:
 
   zipkin-service:
     image: dclou/platform-zipkin-service
-    container_name: zipkin-service
-    networks:
-      - platform
-    ports:
-     - "9411:9411"
 
-
-  admin-ui:
+  admin-service:
     image: dclou/platform-admin-service
-    container_name: admin-ui
-    networks:
-      - platform
     ports:
-     - "7070:7070"
-
+      - "7070:7070"
 
   auth-service:
     image: dclou/platform-auth-service
-    container_name: auth-service
-    networks:
-      - platform
-    ports:
-     - "9991:9991"
-    #environment:
-     #- SPRING_PROFILES_ACTIVE=production
-
 
   config-service:
     image: dclou/platform-config-service
-    container_name: config-service
-    networks:
-      - platform
-    ports:
-     - "8888:8888"
-    #environment:
-     #- SPRING_PROFILES_ACTIVE=production
 
+  sleuth-service:
+    image: dclou/platform-sleuth-service
 
   gateway-service:
     image: dclou/platform-gateway-service
-    container_name: gateway-service
-    networks:
-      - platform
     ports:
-     - "8080:8080"
-    #environment:
-     #- SPRING_PROFILES_ACTIVE=production
-
-
-
-networks:
-  platform:
-    driver: overlay
+      - "8080:8080"
