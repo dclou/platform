@@ -25,7 +25,6 @@
   </modules>
 
   <properties>
-    <docker.image.registry>docker.io</docker.image.registry>
     <docker.image.prefix>platform</docker.image.prefix>
     <docker.image.group>dclou</docker.image.group>
     <docker.image.version>latest</docker.image.version>

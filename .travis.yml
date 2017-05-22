@@ -5,9 +5,6 @@ language: java
 services:
   - docker
 
-install:
-  - docker pull java:8
-
 script:
   - mvn test -B test
 
