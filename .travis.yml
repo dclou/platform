@@ -9,10 +9,9 @@ install:
 script:
   - mvn test -B test
 
-before_deploy:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-
 deploy:
   skip_cleanup: true
   provider: script
-  script: mvn -B package -Pdocker_deploy
+  script: |
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    mvn -B package -Pdocker_deploy
