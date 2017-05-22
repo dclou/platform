@@ -1,0 +1,16 @@
+sudo: required
+language: java
+services:
+  - docker
+
+install:
+  - docker pull java:8
+
+script:
+  - mvn test -B
+
+before_deploy:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+deploy:
+  skip_cleanup: true
