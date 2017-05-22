@@ -1,5 +1,7 @@
 sudo: required
+
 language: java
+
 services:
   - docker
 
@@ -9,7 +11,5 @@ install:
 script:
   - mvn test -B test
 
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; mvn -B package -Pdocker_deploy
+after_success:
+  - mvn -s .travis.settings.xml -B package -Pdocker_deploy

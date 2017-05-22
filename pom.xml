@@ -34,7 +34,7 @@
 
     <spring-cloud-dependencies.version>Dalston.RELEASE</spring-cloud-dependencies.version>
 
-    <spring-boot-maven-plugin.version>1.2.2</spring-boot-maven-plugin.version>
+    <docker-maven-plugin.version>0.4.14</docker-maven-plugin.version>
 
     <spring-boot-admin.version>1.5.0</spring-boot-admin.version>
 
@@ -56,11 +56,11 @@
           <plugins>
             <plugin>
               <groupId>com.spotify</groupId>
-              <artifactId>dockerfile-maven-plugin</artifactId>
-              <version>${spring-boot-maven-plugin.version}</version>
+              <artifactId>docker-maven-plugin</artifactId>
+              <version>${docker-maven-plugin.version}</version>
               <executions>
                 <execution>
-                  <id>docker_deploy</id>
+                  <id>default</id>
                   <phase>package</phase>
                   <goals>
                     <goal>push</goal>
@@ -68,8 +68,12 @@
                 </execution>
               </executions>
               <configuration>
-                <repository>${docker.image.registry}/${docker.image.group}/${docker.image.prefix}-${project.name}</repository>
-                <tag>${docker.image.version}</tag>
+                <imageName>${docker.image.group}/${docker.image.prefix}-${project.name}</imageName>
+                <imageTags>
+                  <imageTag>${project.version}</imageTag>
+                  <imageTag>${docker.image.version}</imageTag>
+                </imageTags>
+                <serverId>docker-hub</serverId>
               </configuration>
             </plugin>
           </plugins>
@@ -89,19 +93,24 @@
       <plugins>
         <plugin>
           <groupId>com.spotify</groupId>
-          <artifactId>dockerfile-maven-plugin</artifactId>
-          <version>${spring-boot-maven-plugin.version}</version>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>${docker-maven-plugin.version}</version>
           <executions>
             <execution>
               <id>default</id>
+              <phase>package</phase>
               <goals>
                 <goal>build</goal>
               </goals>
             </execution>
           </executions>
           <configuration>
-            <repository>${docker.image.registry}/${docker.image.group}/${docker.image.prefix}-${project.name}</repository>
-            <tag>${docker.image.version}</tag>
+            <dockerDirectory>${project.basedir}</dockerDirectory>
+            <imageName>${docker.image.group}/${docker.image.prefix}-${project.name}</imageName>
+            <imageTags>
+              <imageTag>${project.version}</imageTag>
+              <imageTag>${docker.image.version}</imageTag>
+            </imageTags>
           </configuration>
         </plugin>
       </plugins>
