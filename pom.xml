@@ -57,7 +57,7 @@
       <id>docker_deploy</id>
       <activation>
         <property>
-          <name>docker_deploy</name>
+          <name>deployDocker</name>
           <value>true</value>
         </property>
       </activation>
