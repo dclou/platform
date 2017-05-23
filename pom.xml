@@ -52,8 +52,32 @@
     <developer>
       <name>Alexander Tumin</name>
       <email>iamtakingiteasy@eientei.org</email>
-      <organization>Dripcloud</organization>
-      <organizationUrl>http://github.com/dclou</organizationUrl>
+      <organization>Private</organization>
+      <organizationUrl>http://github.com/iamtakingiteasy</organizationUrl>
+    </developer>
+    <developer>
+      <name>Tartanov Mikhail</name>
+      <email>tartanov.mike@gmail.com</email>
+      <organization>Technosoft</organization>
+      <organizationUrl>http://www.tsft.ru</organizationUrl>
+    </developer>
+    <developer>
+      <name>Artem Vilkov</name>
+      <email>zotona@gmail.com</email>
+      <organization>Technosoft</organization>
+      <organizationUrl>http://www.tsft.ru</organizationUrl>
+    </developer>
+    <developer>
+      <name>Alexander Podoplelov</name>
+      <email>alepod@gmail.com</email>
+      <organization>Technosoft</organization>
+      <organizationUrl>http://www.tsft.ru</organizationUrl>
+    </developer>
+    <developer>
+      <name>Maxim Nikitin</name>
+      <email>msnikitin@tsft.ru</email>
+      <organization>Technosoft</organization>
+      <organizationUrl>http://www.tsft.ru</organizationUrl>
     </developer>
   </developers>
 
