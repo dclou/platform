@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.dclou</groupId>
+    <groupId>com.github.dclou</groupId>
     <artifactId>platform</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>org.dclou.platform</groupId>
+  <groupId>com.github.dclou.platform</groupId>
   <artifactId>zipkin-service</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>zipkin-service</name>
