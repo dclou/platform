@@ -41,6 +41,28 @@
     <logback-more-appenders.version>1.4.2</logback-more-appenders.version>
   </properties>
 
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Alexander Tumin</name>
+      <email>iamtakingiteasy@eientei.org</email>
+      <organization>Dripcloud</organization>
+      <organizationUrl>http://github.com/dclou</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/dclou/platform.git</connection>
+    <developerConnection>scm:git:ssh://github.com:dclou/platform.git</developerConnection>
+    <url>http://github.com/dclou/platform/tree/master</url>
+  </scm>
+
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
