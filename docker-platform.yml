@@ -19,9 +19,6 @@ services:
   config-service:
     image: dclou/platform-config-service
 
-  sleuth-service:
-    image: dclou/platform-sleuth-service
-
   gateway-service:
     image: dclou/platform-gateway-service
     ports:

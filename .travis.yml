@@ -1,8 +1,6 @@
 sudo: required
 
-branches:
-  only:
-  - master
+
 
 language: java
 
