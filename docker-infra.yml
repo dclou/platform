@@ -17,6 +17,8 @@ services:
     image: dclou/platform-discovery-service:latest
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
+    ports:
+      - "8761:8761"
 
   config-service:
     image: dclou/platform-config-service:latest
