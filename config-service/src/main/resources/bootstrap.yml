@@ -4,14 +4,15 @@ spring:
   cloud:
     config:
           server:
-            #git:
-              #uri: file://Users/abv/config
-              #uri: classpath:/shared
-            native:
-              #searchLocations: classpath:/shared
-              searchLocations: file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared, file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared/platform
-  profiles:
-     active: native
+            git:
+              uri: https://github.com/dclou/demogpb/
+              search-paths: config-repo
+
+#            native:
+#              #searchLocations: classpath:/shared
+#              searchLocations: file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared, file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared/platform
+#  profiles:
+#     active: native
 
 server:
   port: 8888

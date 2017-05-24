@@ -1,5 +1,5 @@
 server:
-  port: 9080
+  port: 8080
 
 zuul:
   ignoredServices: '*'
@@ -10,6 +10,9 @@ zuul:
   routes:
     catalog:
       path: /catalog/**
+      sensitiveHeaders:
+    customer:
+      path: /customer-service/**
       sensitiveHeaders:
     order:
       path: /order-service/**
