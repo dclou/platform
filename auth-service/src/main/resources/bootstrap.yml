@@ -2,20 +2,17 @@ spring:
   application:
     name: auth-service
 
-encrypt:
-  failOnError: false
-eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    healthcheck:
+cloud:
+  cloud:
+    config:
       enabled: true
-    serviceUrl:
-      defaultZone: http://discovery-service:8761/eureka/
-  instance:
-      prefer-ip-address: false
-      lease-expiration-duration-in-seconds: 60
-      lease-renewal-interval-in-seconds: 30
-      hostname: auth-service
-
-management.security.enabled: false
+      uri: http://config-service:8888
+#      #profile: production
+#      #label: master
+#      discovery:
+#              enabled: true
+#              service-id: config-service
+      failFast: false
+      retry:
+        initialInterval: 3000
+        maxAttempts: 100

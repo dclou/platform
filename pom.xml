@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.5.RELEASE</version>
+    <version>1.5.3.RELEASE</version>
   </parent>
 
   <modules>
@@ -20,7 +20,6 @@
     <module>config-service</module>
     <module>discovery-service</module>
     <module>gateway-service</module>
-    <module>sleuth-service</module>
     <module>zipkin-service</module>
   </modules>
 
@@ -274,6 +273,10 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-hystrix</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-config</artifactId>
     </dependency>
 
     <dependency>

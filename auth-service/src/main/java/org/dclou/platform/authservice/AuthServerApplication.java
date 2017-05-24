@@ -21,6 +21,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -57,25 +58,23 @@ public class AuthServerApplication extends WebMvcConfigurerAdapter {
 			return super.authenticationManagerBean();
 		}
 
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
 
-			http
-					.formLogin().loginPage("/login").permitAll()
-					.and()
-					//.and().httpBasic().and() todo uncomment if basic auth needed
-					.requestMatchers()
-					//specify urls handled
-					.antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
-					.antMatchers("/fonts/**", "/js/**", "/css/**")
-					.and()
-					.authorizeRequests()
-					.antMatchers("/fonts/**", "/js/**", "/css/**").permitAll()
-					.anyRequest().authenticated();
+@Override
+protected void configure(HttpSecurity http) throws Exception {
 
+	http
+			.formLogin().loginPage("/login").permitAll()
+			.and().httpBasic().and()
+			.requestMatchers()
+			//specify urls handled
+			.antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
+			.antMatchers("/fonts/**", "/js/**", "/css/**", "/mgmt/**")
+			.and()
+			.authorizeRequests()
+			.antMatchers("/fonts/**", "/js/**", "/css/**").permitAll()
+			.anyRequest().authenticated();
 
-		}
-
+}
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 			auth.inMemoryAuthentication()
