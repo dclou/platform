@@ -14,14 +14,14 @@ volumes:
 services:
 
   discovery-service:
-    image: dclou/platform-discovery-service
+    image: dclou/platform-discovery-service:latest
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
 
   config-service:
-    image: dclou/platform-config-service
-    depends_on: # https://docs.docker.com/compose/startup-order/
-      - discovery-service
+    image: dclou/platform-config-service:latest
+    ports:
+      - "8888:8888"
 
   rabbit-mon:
     image: rabbitmq:3.6.9-management
@@ -40,7 +40,7 @@ services:
       - data-mongo:/data/db
 
   prometheus:
-    image: dclou/platform-prometheus
+    image: dclou/platform-prometheus:latest
     volumes:
       - data-prometheus:/prometheus
 
@@ -48,11 +48,11 @@ services:
     image: grafana/grafana
     volumes:
       - data-grafana:/var/lib/grafana
-    ports:      
+    ports:
       - "3000:3000"
 
   fluentd:
-    image: dclou/platform-fluentd
+    image: dclou/platform-fluentd:latest
     volumes:
       - data-logging:/fluentd/log
 
@@ -65,5 +65,5 @@ services:
     image: kibana
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
-    ports:      
+    ports:
       - "5601:5601"

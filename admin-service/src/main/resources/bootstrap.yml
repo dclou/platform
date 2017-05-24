@@ -15,4 +15,3 @@ spring:
       retry:
         initialInterval: 3000
         maxAttempts: 100
-

@@ -4,19 +4,18 @@
 
 version: '3'
 services:
-
-  zipkin-service:
-    image: dclou/platform-zipkin-service
-
   admin-service:
-    image: dclou/platform-admin-service
+    image: dclou/platform-admin-service:latest
     ports:
       - "7070:7070"
 
+  zipkin-service:
+    image: dclou/platform-zipkin-service:latest
+
   auth-service:
-    image: dclou/platform-auth-service
+    image: dclou/platform-auth-service:latest
 
   gateway-service:
-    image: dclou/platform-gateway-service
+    image: dclou/platform-gateway-service:latest
     ports:
       - "8080:8080"
