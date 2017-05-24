@@ -15,4 +15,4 @@ script:
 after_success:
   - openssl aes-256-cbc -K $encrypted_20b9ef8ac179_key -iv $encrypted_20b9ef8ac179_iv -in travissign.asc.enc -out travissign.asc -d
   - gpg --fast-import travissign.asc
-  - mvn -s .travis.settings.xml -B deploy -PdeployDocker
+  - mvn -s .travis.settings.xml -B deploy -DdeployDocker
