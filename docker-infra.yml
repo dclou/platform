@@ -18,6 +18,11 @@ services:
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
 
+  config-service:
+    image: dclou/platform-config-service
+    depends_on: # https://docs.docker.com/compose/startup-order/
+      - discovery-service
+
   rabbit-mon:
     image: rabbitmq:3.6.9-management
     hostname: rabbit-mon

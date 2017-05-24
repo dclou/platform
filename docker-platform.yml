@@ -16,9 +16,6 @@ services:
   auth-service:
     image: dclou/platform-auth-service
 
-  config-service:
-    image: dclou/platform-config-service
-
   gateway-service:
     image: dclou/platform-gateway-service
     ports:
