@@ -2,6 +2,12 @@ spring:
   application:
     name: gateway-service
   cloud:
+    inetutils:
+      preferred-networks:
+        - 10.0
+      ignored-interfaces:
+        - eth2
+        - eth2@*
     config:
       enabled: true
       uri: http://config-service:8888
