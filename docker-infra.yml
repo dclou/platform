@@ -25,6 +25,14 @@ services:
     ports:
       - "8888:8888"
 
+  portainer:
+    image: portainer/portainer
+    restart: always
+        volumes:
+          - '/var/run/docker.sock:/var/run/docker.sock'
+    ports:
+      - "9000:9000"
+
   rabbit-mon:
     image: rabbitmq:3.6.9-management
     hostname: rabbit-mon
@@ -36,10 +44,10 @@ services:
       - RABBITMQ_DEFAULT_PASS=admin
       - RABBITMQ_DEFAULT_VHOST=rabbit-mon
 
-  db:
-    image: mongo
-    volumes:
-      - data-mongo:/data/db
+#  db:
+#    image: mongo
+#    volumes:
+#      - data-mongo:/data/db
 
   prometheus:
     image: dclou/platform-prometheus:latest
