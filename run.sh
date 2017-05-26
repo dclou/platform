@@ -2,24 +2,18 @@
 
 BIP=127.0.0.1
 
-if [ $# -gt 0 ] && [ $1 = "init" ]; then
-  if command -v docker-machine &>/dev/null; then
-    docker-machine create -d virtualbox --virtualbox-cpu-count 4 --virtualbox-memory 7096 dclou || true
+if command -v docker-machine &>/dev/null; then
+  if [ $(docker-machine env dclou) ]; then
     eval $(docker-machine env dclou)
-    docker swarm init --advertise-addr $IP &>/dev/null || true
+    IP="$(docker-machine ip dclou)"
+    echo "Runnung in Virtaul Machine dclou with ip:$IP"
+    BIP=IP
   else
-    docker swarm init &>/dev/null || true
-  fi      
+    echo "Runnung on the local station"
+  fi
 fi
 
-if command -v docker-machine &>/dev/null && [ -z "$IP" ]; then
-  eval $(docker-machine env dclou)
-  export IP="$(docker-machine ip dclou)"
-  BIP=$IP
-fi
-
-
-docker stack deploy -c docker-infra.yml dclou
+docker stack deploy -c docker-infra.yml dclou || exit -1
 while ! curl -s http://${BIP}:8761 &>/dev/null; do sleep 2; echo Waiting for discovery server...; done &
 while ! curl -s http://${BIP}:8888 &>/dev/null; do sleep 2; echo Waiting for config server...; done &
 wait
