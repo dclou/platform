@@ -1,5 +1,13 @@
 #!/bin/sh
+
+IP="$(docker-machine ip dclou)"
+if [ "$IP" ]; then
+  echo "Using virtual machine dclou"
+  eval $(docker-machine env dclou)
+else
+  echo "Using local computer"
+fi
+
 docker stack rm dclou
 docker volume prune
 docker images 'dclou/*' --format '{{.ID}}' | xargs docker rmi -f
-unset DOCKER_HOST DOCKER_MACHINE_NAME DOCKER_TLS_VERIFY DOCKER_CERT_PATH

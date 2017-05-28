@@ -16,7 +16,12 @@ if [ $# -gt 0 ] && [ $1 = "virtualbox" ]; then
     exit -1
   fi
 else
-  #Configure local computer as swarm manager
-  docker swarm init &>/dev/null || true
+  if [ "$(docker version 2>\&1 | grep Server)" ]; then
+    echo "Configure local computer as swarm manager"
+    docker swarm init &>/dev/null || true
+  else
+    echo "*** Error: $? Docker service is not running"
+    exit -1
+  fi
 fi
 
