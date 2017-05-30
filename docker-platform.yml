@@ -9,9 +9,6 @@ services:
     ports:
       - "7070:7070"
 
-  zipkin-service:
-    image: dclou/platform-zipkin-service:latest
-
   auth-service:
     image: dclou/platform-auth-service:latest
 
