@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 BIP=127.0.0.1
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 IP="$(docker-machine ip dclou 2>&1)"
 NODOC=$(echo $IP | egrep -o "^[^ ]+")

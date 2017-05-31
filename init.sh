@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $# -gt 0 ] && [ $1 = "virtualbox" ]; then
   if command -v docker-machine &>/dev/null; then

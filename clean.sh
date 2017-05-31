@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 IP="$(docker-machine ip dclou)"
 if [ "$IP" ]; then
