@@ -3,11 +3,11 @@
 BIP=127.0.0.1
 
 if command -v docker-machine &>/dev/null; then
-  if [ $(docker-machine env dclou >/dev/null 2>&1) ]; then
+  if docker-machine env dclou &>/dev/null; then
     eval $(docker-machine env dclou)
     IP="$(docker-machine ip dclou)"
     echo "Runnung in Virtaul Machine dclou with ip:$IP"
-    BIP=IP
+    BIP=$IP
   else
     echo "Runnung on the local station"
   fi
