@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
 EXPOSE 8761
 ADD target/discovery-service-*.jar /app.jar

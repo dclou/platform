@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
 EXPOSE 7070
 ADD target/admin-service-*.jar /app.jar

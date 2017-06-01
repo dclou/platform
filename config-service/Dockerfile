@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
 EXPOSE 8888
 ADD target/config-service-*.jar /app.jar

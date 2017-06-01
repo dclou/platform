@@ -4,9 +4,12 @@
 
 version: '3'
 volumes:
+  data-mongo:
   data-prometheus:
+  data-grafana:
   data-logging:
   data-elasticsearch:
+  data-rabbitmq:
 
 services:
 
@@ -29,10 +32,33 @@ services:
     ports:
       - "9000:9000"
 
-  prometheus:
-    image: dclou/platform-prometheus:latest
+  rabbit-mon:
+    image: rabbitmq:3.6.9-management
+    hostname: rabbit-mon
     volumes:
-      - data-prometheus:/prometheus
+     - data-rabbitmq:/optc
+    environment:
+     #- TZ=Europe/Moscow
+     - RABBITMQ_DEFAULT_USER=admin
+     - RABBITMQ_DEFAULT_PASS=admin
+     - RABBITMQ_DEFAULT_VHOST=rabbit-mon
+
+#  db:
+#    image: mongo
+#    volumes:
+#      - data-mongo:/data/db
+
+  # prometheus:
+  #   image: dclou/platform-prometheus:latest
+  #   volumes:
+  #     - data-prometheus:/prometheus
+
+  # grafana:
+  #   image: grafana/grafana
+  #   volumes:
+  #     - data-grafana:/var/lib/grafana
+  #   ports:
+  #     - "3000:3000"
 
   fluentd:
     image: dclou/platform-fluentd:latest
@@ -40,6 +66,28 @@ services:
       - data-logging:/fluentd/log
 
   elasticsearch:
-    image: elasticsearch
+    image: dclou/platform-elasticsearch:latest
+    deploy:
+      resources:
+        limits:
+          memory: 700M
     volumes:
-      - data-elasticsearch:/usr/share/elasticsearch/data
+      - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+
+  kibana:
+    image: dclou/platform-kibana:latest
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    volumes:
+      - ./docker-common/kibana/:/usr/share/kibana/config
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
