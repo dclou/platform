@@ -22,6 +22,10 @@ services:
 
   config-service:
     image: dclou/platform-config-service:latest
+    environment:
+      - GIT_URI
+    command:
+      --spring.config.server.git.uri=https://github.com/dclou/demogpb.git
     ports:
       - "8888:8888"
 
@@ -33,7 +37,7 @@ services:
       - "9000:9000"
 
   rabbit-mon:
-    image: rabbitmq:3.6.9-management
+    image: rabbitmq:alpine
     hostname: rabbit-mon
     volumes:
      - data-rabbitmq:/optc
