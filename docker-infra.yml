@@ -17,17 +17,17 @@ services:
     image: dclou/platform-discovery-service:latest
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
-    environment:
-      JAVA_OPTS: "-Xms250m -Xmx720m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+#    environment:
+#      JAVA_OPTS: "-Xms250m -Xmx720m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
     ports:
       - "8761:8761"
 
   config-service:
     image: dclou/platform-config-service:latest
-    environment:
-      JAVA_OPTS: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
-    command:
-      --spring.config.server.git.uri=https://github.com/dclou/demogpb.git
+    depends_on:
+      - fluentd
+#    environment:
+#      JAVA_OPTS: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
     ports:
       - "8888:8888"
 
@@ -73,10 +73,6 @@ services:
 
   elasticsearch:
     image: dclou/platform-elasticsearch:latest
-    deploy:
-      resources:
-        limits:
-          memory: 700M
     volumes:
       - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
@@ -87,10 +83,6 @@ services:
 
   kibana:
     image: dclou/platform-kibana:latest
-    deploy:
-      resources:
-        limits:
-          memory: 500M
     volumes:
       - ./docker-common/kibana/:/usr/share/kibana/config
     ports:
