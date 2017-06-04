@@ -17,8 +17,9 @@ services:
     image: dclou/platform-discovery-service:latest
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
-#    environment:
-#      JAVA_OPTS: "-Xms250m -Xmx720m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx720m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "8761:8761"
 
@@ -26,8 +27,9 @@ services:
     image: dclou/platform-config-service:latest
     depends_on:
       - fluentd
-#    environment:
-#      JAVA_OPTS: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "8888:8888"
 
