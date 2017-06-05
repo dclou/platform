@@ -3,6 +3,11 @@
 # How-to swarm cluster: https://codefresh.io/blog/deploy-docker-compose-v3-swarm-mode-cluster/
 
 version: '3'
+
+networks:
+  dnet:
+    driver: bridge
+
 services:
   admin-service:
     image: dclou/platform-admin-service:latest
@@ -11,6 +16,8 @@ services:
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "7070:7070"
+    networks:
+      - dnet
 
   zipkin-service:
     image: dclou/platform-zipkin-service:latest
@@ -19,6 +26,8 @@ services:
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "9411:9411"
+    networks:
+      - dnet
 
   auth-service:
     image: dclou/platform-auth-service:latest
@@ -27,6 +36,8 @@ services:
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "9991:9991"
+    networks:
+      - dnet
 
   gateway-service:
     image: dclou/platform-gateway-service:latest
@@ -35,3 +46,5 @@ services:
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "8080:8080"
+    networks:
+      - dnet

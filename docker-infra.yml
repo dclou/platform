@@ -11,6 +11,10 @@ volumes:
   data-elasticsearch:
   data-rabbitmq:
 
+networks:
+  dnet:
+    driver: bridge
+
 services:
 
   discovery-service:
@@ -22,6 +26,8 @@ services:
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "8761:8761"
+    networks:
+      - dnet
 
   config-service:
     image: dclou/platform-config-service:latest
@@ -32,6 +38,8 @@ services:
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "8888:8888"
+    networks:
+      - dnet
 
   portainer:
     image: portainer/portainer
@@ -39,6 +47,8 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
     ports:
       - "9000:9000"
+    networks:
+      - dnet
 
   rabbit-mon:
     image: rabbitmq:alpine
@@ -50,6 +60,8 @@ services:
      - RABBITMQ_DEFAULT_USER=admin
      - RABBITMQ_DEFAULT_PASS=admin
      - RABBITMQ_DEFAULT_VHOST=rabbit-mon
+    networks:
+      - dnet
 
 #  db:
 #    image: mongo
@@ -72,6 +84,8 @@ services:
     image: dclou/platform-fluentd:latest
     volumes:
       - data-logging:/fluentd/log
+    networks:
+      - dnet
 
   elasticsearch:
     image: dclou/platform-elasticsearch:latest
@@ -82,6 +96,8 @@ services:
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - dnet
 
   kibana:
     image: dclou/platform-kibana:latest
@@ -91,3 +107,5 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
+    networks:
+      - dnet

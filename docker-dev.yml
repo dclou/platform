@@ -1,0 +1,191 @@
+# Docker Schema ref: https://github.com/aanand/compose-file/blob/master/schema/data/config_schema_v3.0.json
+# Difference: https://docs.docker.com/compose/compose-file/compose-versioning/#version-21
+# How-to swarm cluster: https://codefresh.io/blog/deploy-docker-compose-v3-swarm-mode-cluster/
+
+version: '3'
+#volumes:
+#  data-mongo:
+#  data-prometheus:
+#  data-grafana:
+#  data-logging:
+#  data-elasticsearch:
+#  data-rabbitmq:
+
+networks:
+  dnet:
+    driver: bridge
+
+services:
+
+#  discovery-service:
+#    image: dclou/platform-discovery-service:latest
+#    depends_on: # https://docs.docker.com/compose/startup-order/
+#      - rabbit-mon
+#    environment:
+#      JAVA_MEM: "-Xms250m -Xmx720m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+#      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    ports:
+#      - "8761:8761"
+#    networks:
+#      - dnet
+#
+#  config-service:
+#    image: dclou/platform-config-service:latest
+#    depends_on:
+#      - fluentd
+#      - discovery-service
+#    environment:
+#      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+#      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    ports:
+#      - "8888:8888"
+#    networks:
+#      - dnet
+#
+#  portainer:
+#    image: portainer/portainer
+#    volumes:
+#      - '/var/run/docker.sock:/var/run/docker.sock'
+#    ports:
+#      - "9000:9000"
+#    networks:
+#      - dnet
+#
+#  rabbit-mon:
+#    image: rabbitmq:alpine
+#    hostname: rabbit-mon
+#    volumes:
+#     - data-rabbitmq:/optc
+#    environment:
+#     #- TZ=Europe/Moscow
+#     - RABBITMQ_DEFAULT_USER=admin
+#     - RABBITMQ_DEFAULT_PASS=admin
+#     - RABBITMQ_DEFAULT_VHOST=rabbit-mon
+#    networks:
+#      - dnet
+#
+##  db:
+##    image: mongo
+##    volumes:
+##      - data-mongo:/data/db
+#
+#  # prometheus:
+#  #   image: dclou/platform-prometheus:latest
+#  #   volumes:
+#  #     - data-prometheus:/prometheus
+#
+#  # grafana:
+#  #   image: grafana/grafana
+#  #   volumes:
+#  #     - data-grafana:/var/lib/grafana
+#  #   ports:
+#  #     - "3000:3000"
+#
+#  fluentd:
+#    image: dclou/platform-fluentd:latest
+#    volumes:
+#      - data-logging:/fluentd/log
+#    networks:
+#      - dnet
+#
+#  elasticsearch:
+#    image: dclou/platform-elasticsearch:latest
+#    volumes:
+#      - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#    environment:
+#      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      - dnet
+#
+#  kibana:
+#    image: dclou/platform-kibana:latest
+#    volumes:
+#      - ./docker-common/kibana/:/usr/share/kibana/config
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - elasticsearch
+#    networks:
+#      - dnet
+#
+#  admin-service:
+#    image: dclou/platform-admin-service:latest
+#    environment:
+#      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+#      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    depends_on:
+#      - discovery-service
+#    ports:
+#      - "7070:7070"
+#    networks:
+#      - dnet
+#
+#  zipkin-service:
+#    image: dclou/platform-zipkin-service:latest
+#    environment:
+#      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+#      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    ports:
+#      - "9411:9411"
+#    networks:
+#      - dnet
+#
+#  auth-service:
+#    image: dclou/platform-auth-service:latest
+#    environment:
+#      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+#      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    depends_on:
+#      - discovery-service
+#    ports:
+#      - "9991:9991"
+#    networks:
+#      - dnet
+#
+#  gateway-service:
+#    image: dclou/platform-gateway-service:latest
+#    environment:
+#      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+#      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    depends_on:
+#      - discovery-service
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - dnet
+
+  demogpb-customer:
+    image: dcloudemo/demogpb-customer:latest
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    depends_on:
+#      - gateway-service
+    networks:
+      - dnet
+
+  demogpb-catalog:
+    image: dcloudemo/demogpb-catalog:latest
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    depends_on:
+#      - gateway-service
+    networks:
+      - dnet
+
+  demogpb-order:
+    image: dcloudemo/demogpb-order:latest
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+#    depends_on:
+#      - fluentd
+#      - gateway-service
+    ports:
+      - "8083:8083"
+    networks:
+      - dnet
