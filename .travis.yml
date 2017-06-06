@@ -1,16 +1,25 @@
 sudo: required
 
-
-
-language: java
-
 services:
   - docker
 
-script:
-  - mvn test -B test
+addons:
+  ssh_known_hosts: 178.159.32.129
 
-after_success:
+script:
+  - mvn -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -B test
+
+before_deploy:
   - openssl aes-256-cbc -K $encrypted_20b9ef8ac179_key -iv $encrypted_20b9ef8ac179_iv -in travissign.asc.enc -out travissign.asc -d
   - gpg --fast-import travissign.asc
-  - mvn -s .travis.settings.xml -B deploy -DdeployDocker
+  - openssl aes-256-cbc -K $encrypted_20b9ef8ac179_key -iv $encrypted_20b9ef8ac179_iv -in deploy/deploy_rsa.enc -out deploy/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 deploy/deploy_rsa
+  - ssh-add deploy/deploy_rsa
+  
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: deploy/deploy.sh 178.159.32.129
+  on:
+    branch: release
