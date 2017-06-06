@@ -14,7 +14,7 @@ volumes:
 services:
 
   discovery-service:
-    image: dclou/platform-discovery-service:latest
+    image: discovery-service:latest
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
     environment:
@@ -24,7 +24,7 @@ services:
       - "8761:8761"
 
   config-service:
-    image: dclou/platform-config-service:latest
+    image: config-service:latest
     depends_on:
       - fluentd
     environment:
@@ -57,7 +57,7 @@ services:
 #      - data-mongo:/data/db
 
   # prometheus:
-  #   image: dclou/platform-prometheus:latest
+  #   image: prometheus:latest
   #   volumes:
   #     - data-prometheus:/prometheus
 
@@ -69,25 +69,25 @@ services:
   #     - "3000:3000"
 
   fluentd:
-    image: dclou/platform-fluentd:latest
+    image: fluentd:latest
     volumes:
       - data-logging:/fluentd/log
 
-  elasticsearch:
-    image: dclou/platform-elasticsearch:latest
-    volumes:
-      - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-
-  kibana:
-    image: dclou/platform-kibana:latest
-    volumes:
-      - ./docker-common/kibana/:/usr/share/kibana/config
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
+#  elasticsearch:
+#    image: elasticsearch:latest
+#    volumes:
+#      - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#    environment:
+#      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#
+#  kibana:
+#    image: kibana:latest
+#    volumes:
+#      - ./docker-common/kibana/:/usr/share/kibana/config
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - elasticsearch

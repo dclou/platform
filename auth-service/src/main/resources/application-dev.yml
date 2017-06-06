@@ -1,15 +1,14 @@
 logging:
-  level.org.dclou.example.demogpb.order.clients: TRACE
-  level.org.springframework.security: TRACE
+  level:
+    org.dclou.example.demogpb.order.clients: DEBUG
+    org.springframework.security: DEBUG
 
 server:
   port: 9991
-  contextPath: /auth
-  use-forward-headers: true
+  session:
+    cookie:
+      name: JSESSIONIDAUTHSRV
 
 security:
   user:
     password: password
-  sessions: IF_REQUIRED
-  basic:
-    enabled: false
