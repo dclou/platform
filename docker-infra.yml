@@ -35,6 +35,10 @@ services:
 
   portainer:
     image: portainer/portainer
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
     ports:
