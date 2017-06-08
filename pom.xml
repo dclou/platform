@@ -26,7 +26,7 @@
   <properties>
     <docker.image.prefix>platform</docker.image.prefix>
     <docker.image.group>dclou</docker.image.group>
-    <docker.image.version>latest</docker.image.version>
+    <docker.image.version>1.0</docker.image.version>
 
     <java.version>1.8</java.version>
 
@@ -123,10 +123,9 @@
                 </execution>
               </executions>
               <configuration>
-                <imageName>${docker.image.group}/${docker.image.prefix}-${project.name}</imageName>
+                <imageName>realiaio/priv</imageName>
                 <imageTags>
-                  <imageTag>${project.version}</imageTag>
-                  <imageTag>${docker.image.version}</imageTag>
+                  <imageTag>${project.name}-${project.version}-${docker.image.version}</imageTag>
                 </imageTags>
                 <serverId>docker-hub</serverId>
               </configuration>
@@ -217,6 +216,7 @@
           <configuration>
             <dockerDirectory>${project.basedir}</dockerDirectory>
             <imageName>${docker.image.group}/${docker.image.prefix}-${project.name}</imageName>
+            <!--<imageName>${project.name}</imageName>-->
             <imageTags>
               <imageTag>${project.version}</imageTag>
               <imageTag>${docker.image.version}</imageTag>

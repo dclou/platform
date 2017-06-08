@@ -1,0 +1,101 @@
+# Docker Schema ref: https://github.com/aanand/compose-file/blob/master/schema/data/config_schema_v3.0.json
+# Difference: https://docs.docker.com/compose/compose-file/compose-versioning/#version-21
+# How-to swarm cluster: https://codefresh.io/blog/deploy-docker-compose-v3-swarm-mode-cluster/
+
+version: '3'
+volumes:
+  data-mongo:
+  data-prometheus:
+  data-grafana:
+  data-logging:
+  data-elasticsearch:
+  data-rabbitmq:
+
+services:
+
+  discovery-service:
+    image: discovery-service:latest
+    depends_on: # https://docs.docker.com/compose/startup-order/
+      - rabbit-mon
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx720m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+    ports:
+      - "8761:8761"
+
+  config-service:
+    image: config-service:latest
+    depends_on:
+      - fluentd
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+    ports:
+      - "8888:8888"
+
+  portainer:
+    image: portainer/portainer
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    ports:
+      - "9000:9000"
+
+  rabbit-mon:
+    image: rabbitmq:alpine
+    hostname: rabbit-mon
+    volumes:
+     - data-rabbitmq:/optc
+    environment:
+     #- TZ=Europe/Moscow
+     - RABBITMQ_DEFAULT_USER=admin
+     - RABBITMQ_DEFAULT_PASS=admin
+     - RABBITMQ_DEFAULT_VHOST=rabbit-mon
+
+#  db:
+#    image: mongo
+#    volumes:
+#      - data-mongo:/data/db
+
+  # prometheus:
+  #   image: prometheus:latest
+  #   volumes:
+  #     - data-prometheus:/prometheus
+
+  # grafana:
+  #   image: grafana/grafana
+  #   volumes:
+  #     - data-grafana:/var/lib/grafana
+  #   ports:
+  #     - "3000:3000"
+
+  fluentd:
+    image: fluentd:latest
+    volumes:
+      - data-logging:/fluentd/log
+
+#  elasticsearch:
+#    image: elasticsearch:latest
+#    volumes:
+#      - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#    environment:
+#      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#
+#  kibana:
+#    image: kibana:latest
+#    deploy:
+#      placement:
+#        constraints:
+#          - node.role == manager
+#    volumes:
+#      - ./docker-common/kibana/:/usr/share/kibana/config
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - elasticsearch
