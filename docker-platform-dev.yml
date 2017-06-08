@@ -5,7 +5,7 @@
 version: '3'
 services:
   admin-service:
-    image: dclou/platform-admin-service:latest
+    image: admin-service:latest
     environment:
       JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
@@ -13,7 +13,7 @@ services:
       - "7070:7070"
 
   zipkin-service:
-    image: dclou/platform-zipkin-service:latest
+    image: zipkin-service:latest
     environment:
       JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
@@ -21,7 +21,7 @@ services:
       - "9411:9411"
 
   auth-service:
-    image: dclou/platform-auth-service:latest
+    image: auth-service:latest
     environment:
       JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
@@ -29,7 +29,7 @@ services:
       - "9991:9991"
 
   gateway-service:
-    image: dclou/platform-gateway-service:latest
+    image: gateway-service:latest
     environment:
       JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
