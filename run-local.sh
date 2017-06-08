@@ -13,12 +13,12 @@ if command -v docker-machine &>/dev/null; then
   fi
 fi
 
-docker stack deploy -c docker-infra-dev.yml dclou || exit -1
+docker stack deploy -c docker-infra-local.yml dclou || exit -1
 while ! curl -s http://${BIP}:8761 &>/dev/null; do sleep 2; echo Waiting for discovery server...; done &
 while ! curl -s http://${BIP}:8888 &>/dev/null; do sleep 2; echo Waiting for config server...; done &
 wait
 
-docker stack deploy -c docker-platform-dev.yml dclou
+docker stack deploy -c docker-platform-local.yml dclou
 while ! curl -s http://${BIP}:7070 &>/dev/null; do sleep 2; echo Waiting for admin server...; done &
 while ! curl -s http://${BIP}:8080 &>/dev/null; do sleep 2; echo Waiting for gateway server...; done &
 wait
