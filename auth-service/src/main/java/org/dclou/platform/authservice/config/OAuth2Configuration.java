@@ -21,7 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
  */
 @Configuration
 @EnableAuthorizationServer
-public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
+public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -47,14 +47,14 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         clients
                 .inMemory()
                 .withClient("order-service")
-                .resourceIds("auth")
+                .resourceIds("auth", "catalog", "customer")
                 .secret("123456")
                 .redirectUris("http://dripka.com:8083/login/order")
                 .authorizedGrantTypes("authorization_code", "password", "refresh_token", "client_credentials")
                 .autoApprove(true)
                 .scopes("FOO")
                 .authorities("FOO_READ", "FOO_WRITE", "OAUTH2_CLIENT")
-                .accessTokenValiditySeconds(60 * 2)//(60 * 60 * 12)
+                .accessTokenValiditySeconds(60 * 60 * 12)//(60 * 2)//(60 * 60 * 12)
                 .refreshTokenValiditySeconds(60 * 60 * 12);
     }
 
