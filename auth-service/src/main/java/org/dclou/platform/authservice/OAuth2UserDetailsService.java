@@ -13,7 +13,7 @@ import java.util.Collection;
  * Created by msnikitin on 24.04.2017.
  */
 @Service
-public class Oauth2UserDetailsService implements UserDetailsService {
+public class OAuth2UserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

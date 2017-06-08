@@ -1,6 +1,6 @@
 package org.dclou.platform.authservice.config;
 
-import org.dclou.platform.authservice.Oauth2UserDetailsService;
+import org.dclou.platform.authservice.OAuth2UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +27,7 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private Oauth2UserDetailsService userDetailsService;
+    private OAuth2UserDetailsService userDetailsService;
 
     @Bean
     public TokenStore tokenStore() {

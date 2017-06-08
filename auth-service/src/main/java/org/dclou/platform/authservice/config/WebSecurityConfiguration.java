@@ -1,6 +1,6 @@
 package org.dclou.platform.authservice.config;
 
-import org.dclou.platform.authservice.Oauth2UserDetailsService;
+import org.dclou.platform.authservice.OAuth2UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
@@ -21,14 +21,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private Oauth2UserDetailsService userDetailsService;
+    private OAuth2UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/oauth/token", "/oauth/check_token", "/health", "/metrics")
+                .antMatchers("/", "/login", "/oauth/token", "/oauth/check_token", "/health", "/metrics", "/info")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
