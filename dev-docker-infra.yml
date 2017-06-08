@@ -14,7 +14,7 @@ volumes:
 services:
 
   discovery-service:
-    image: dclou/platform-discovery-service:latest
+    image: dclou/platform-discovery-service:dev
     depends_on: # https://docs.docker.com/compose/startup-order/
       - rabbit-mon
     environment:
@@ -24,7 +24,7 @@ services:
       - "8761:8761"
 
   config-service:
-    image: dclou/platform-config-service:latest
+    image: dclou/platform-config-service:dev
     depends_on:
       - fluentd
     environment:
@@ -73,12 +73,12 @@ services:
   #     - "3000:3000"
 
   fluentd:
-    image: dclou/platform-fluentd:latest
+    image: dclou/platform-fluentd:dev
     volumes:
       - data-logging:/fluentd/log
 
   elasticsearch:
-    image: dclou/platform-elasticsearch:latest
+    image: dclou/platform-elasticsearch:dev
     volumes:
       - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
@@ -88,7 +88,7 @@ services:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
   kibana:
-    image: dclou/platform-kibana:latest
+    image: dclou/platform-kibana:dev
     deploy:
       placement:
         constraints:
