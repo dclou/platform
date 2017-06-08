@@ -89,6 +89,10 @@ services:
 
   kibana:
     image: dclou/platform-kibana:latest
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
     volumes:
       - ./docker-common/kibana/:/usr/share/kibana/config
     ports:
