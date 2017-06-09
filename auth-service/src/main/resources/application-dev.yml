@@ -1,15 +1,37 @@
 logging:
-  level.org.dclou.example.demogpb.order.clients: TRACE
-  level.org.springframework.security: TRACE
+  level.org.dclou.platform: TRACE
+  level.org.springframework.security: DEBUG
 
 server:
   port: 9991
-  contextPath: /auth
-  use-forward-headers: true
+  session:
+    cookie:
+      name: JSESSIONIDAUTHSRV
 
 security:
   user:
     password: password
-  sessions: IF_REQUIRED
-  basic:
-    enabled: false
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 60
+    lease-renewal-interval-in-seconds: 30
+    statusPageUrl: http://${eureka.instance.hostname}:${management.port}${server.contextPath}${management.context-path}/info
+    secureHealthCheckUrl: http://${eureka.instance.hostname}:${management.port}${server.contextPath}${management.context-path}/health
+    homePageUrl: http://${eureka.instance.hostname}:${server.port}/
+    securePort: ${server.port}
+    securePortEnabled: false
+    nonSecurePortEnabled: true
+    metadataMap:
+      management.context-path: ${server.contextPath}${management.context-path}
+      management.port: ${management.port}
+      instanceId: ${spring.application.name}:${random.value}
