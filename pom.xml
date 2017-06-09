@@ -123,9 +123,10 @@
                 </execution>
               </executions>
               <configuration>
-                <imageName>realiaio/priv</imageName>
+                <imageName>${docker.image.group}/${docker.image.prefix}-${project.name}</imageName>
                 <imageTags>
-                  <imageTag>${project.name}-${project.version}-${docker.image.version}</imageTag>
+                  <imageTag>${project.version}</imageTag>
+                  <imageTag>${docker.image.version}</imageTag>
                 </imageTags>
                 <serverId>docker-hub</serverId>
               </configuration>
