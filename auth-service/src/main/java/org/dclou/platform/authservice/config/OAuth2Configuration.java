@@ -49,7 +49,7 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
                 .withClient("order-service")
                 .resourceIds("auth", "catalog", "customer")
                 .secret("123456")
-                .redirectUris("http://dripka.com:8083/login/order")
+                .redirectUris("http://dripka.com:8083/login/order", "http://demo.zotona.com/login/order")
                 .authorizedGrantTypes("authorization_code", "password", "refresh_token", "client_credentials")
                 .autoApprove(true)
                 .scopes("FOO")
