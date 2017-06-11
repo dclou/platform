@@ -26,4 +26,4 @@ eureka:
     serviceUrl:
        defaultZone: http://discovery-service:8761/eureka/
 
-management.security.enabled: falsemanagement.security.enabled: false
+management.security.enabled: false
