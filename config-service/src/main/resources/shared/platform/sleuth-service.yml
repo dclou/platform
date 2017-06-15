@@ -1,4 +1,5 @@
 server:
+  context-path:
   port: 8994
 #spring:
 #  cloud:
@@ -13,6 +14,9 @@ server:
 #        output:
 #          destination: ${kafka.destination}
 
+eureka:
+  instance:
+    prefer-ip-address: false
 
 spring:
   cloud:
