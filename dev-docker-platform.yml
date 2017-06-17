@@ -35,3 +35,11 @@ services:
       JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
     ports:
       - "8080:8080"
+
+  turbine-service:
+    image: dclou/platform-turbine-service:dev
+    environment:
+      JAVA_MEM: "-Xms250m -Xmx512m -XX:CompressedClassSpaceSize=300m -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:-TieredCompilation -Xss256k -XX:+UseG1GC -XX:+UseStringDeduplication"
+      JAVA_EXT: "-Djava.security.egd=file:/dev/./urandom"
+    ports:
+      - "8485:8485"
