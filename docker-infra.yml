@@ -10,6 +10,7 @@ volumes:
   data-logging:
   data-elasticsearch:
   data-rabbitmq:
+  data-portainer:
 
 services:
 
@@ -40,7 +41,7 @@ services:
         constraints:
           - node.role == manager
     volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock'
+      - 'data-portainer:/data'
     ports:
       - "9000:9000"
 
