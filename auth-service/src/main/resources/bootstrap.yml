@@ -9,3 +9,14 @@ spring:
       retry:
         initialInterval: 3000
         maxAttempts: 100
+
+recaptcha:
+  validation:
+    secret-key: 6LfLCycUAAAAAOLqi48DqM2Wu9L7P-riANg_oFA4
+  testing:
+    enabled: false
+    success-result: false
+  security:
+    continue-on-validation-http-error: false
+    login-failures-threshold: 0
+    failure-url: /login.html
