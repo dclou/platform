@@ -10,12 +10,12 @@ spring:
         - eth2@*
     config:
       server:
-#        git:
-#          uri: https://github.com/dclou/demogpb.git
-#          search-paths: config-repo, config-repo/platform
-        native:
-          search-locations: classpath:shared/,classpath:shared/platform/
-#          searchLocations: classpath:/shared
-#          searchLocations: file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared, file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared/platform
-  profiles:
-     active: native
+        git:
+          uri: https://github.com/dclou/demogpb.git
+          search-paths: config-repo, config-repo/platform
+#        native:
+#          search-locations: classpath:shared/,classpath:shared/platform/
+##          searchLocations: classpath:/shared
+##          searchLocations: file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared, file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared/platform
+#  profiles:
+#     active: native
