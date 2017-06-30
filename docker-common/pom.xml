@@ -20,9 +20,9 @@
 
   <modules>
     <module>fluentd</module>
-    <module>prometheus</module>
-    <module>logstash</module>
-    <module>kibana</module>
-    <module>elasticsearch</module>
+    <!--<module>prometheus</module>-->
+    <!--<module>logstash</module>-->
+    <!--<module>kibana</module>-->
+    <!--<module>elasticsearch</module>-->
   </modules>
 </project>

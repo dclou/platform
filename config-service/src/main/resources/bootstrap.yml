@@ -1,7 +1,3 @@
-info:
-  version: 1.0.0
-  description: подсистема "Конфигурации"
-
 spring:
   application:
     name: config-service
@@ -14,32 +10,12 @@ spring:
         - eth2@*
     config:
       server:
-        git:
-          uri: https://github.com/dclou/demogpb.git
-          search-paths: config-repo, config-repo/platform
-
-#        native:
-#          search-locations: classpath:shared/,classpath:shared/platform/
-#            native:
-#              #searchLocations: classpath:/shared
-#              searchLocations: file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared, file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared/platform
-#  profiles:
-#     active: native
-
-server:
-  port: 8888
-eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://discovery-service:8761/eureka/
-  instance:
-      prefer-ip-address: false
-      lease-expiration-duration-in-seconds: 60
-      lease-renewal-interval-in-seconds: 30
-      hostname: config-service
-
-management.security.enabled: false
-    
-# http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_spring_cloud_config_server
+#        git:
+#          uri: https://github.com/dclou/demogpb.git
+#          search-paths: config-repo, config-repo/platform
+        native:
+          search-locations: classpath:shared/,classpath:shared/platform/
+#          searchLocations: classpath:/shared
+#          searchLocations: file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared, file:///Users/abv/Work/dcloud/platform/config-service/src/main/resources/shared/platform
+  profiles:
+     active: native

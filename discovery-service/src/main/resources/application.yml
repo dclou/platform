@@ -1,0 +1,39 @@
+info:
+  version: 1.0.0
+  description: подсистема "Реестр сервисов"
+
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: false
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 60
+  server:
+    enableSelfPreservation: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${spring.application.name}:${server.port}/eureka/
+
+management:
+  port: ${server.port}
+  context-path: /manage
+  security:
+    enabled: false
+
+server:
+  port: 8761
+  context-path:
+  session:
+    cookie:
+      name: JSESSIONIDDISCOSRV
+  use-forward-headers: true
+
+security:
+  sessions: if_required
+  user:
+    password: password
+  basic:
+    enabled: false
+  ignored: ${management.context-path}/**
