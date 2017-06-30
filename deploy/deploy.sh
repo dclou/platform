@@ -2,7 +2,7 @@
 
 HOST="$1"
 
-ssh user@$HOST 'ssh user@10.10.50.11 docker stack rm dclou'
+ssh user@$HOST 'ssh -p50022 user@10.10.50.11 docker stack rm dclou'
 
 mvn -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -s .travis.settings.xml -B deploy -DdeployDocker
 
