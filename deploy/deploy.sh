@@ -13,5 +13,5 @@ ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.22 "docker 
 ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 rm -rf platform demogpb'
 ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 git clone https://github.com/dclou/platform'
 ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 git clone https://github.com/dclou/demogpb'
-ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 "cd platform && checkout release-1.0.0 && ./run.sh"'
-ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 "cd demogpb && checkout release-1.0.0 && ./run.sh"'
+ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 "cd platform && git checkout release-1.0.0 && ./run.sh"'
+ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 "cd demogpb && git checkout release-1.0.0 && ./run.sh"'
