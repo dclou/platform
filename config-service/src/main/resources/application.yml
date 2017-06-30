@@ -1,0 +1,46 @@
+info:
+  version: 1.0.0
+  description: подсистема "Конфигурации"
+
+server:
+  context-path:
+  port: 8888
+  ssl:
+    enabled: false
+  session:
+    cookie:
+      name: JSESSIONIDCONFIGSRV
+  use-forward-headers: true
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 60
+    metadata-map:
+      instanceId: ${spring.application.name}:${random.value}
+      management.context-path: ${server.context-path}${management.context-path}
+    statusPageUrlPath: ${server.context-path}${management.context-path}/info
+    healthCheckUrlPath: ${server.context-path}${management.context-path}/health
+    homePageUrlPath: ${eureka.hostname}/
+
+management:
+  port: ${server.port}
+  security.enabled: false
+  context-path: /manage
+
+security:
+  sessions: stateless
+  user:
+    password: password
+  basic:
+    enabled: false
+  ignored: ${management.context-path}/**

@@ -19,6 +19,3 @@ while ! curl -s http://${BIP}:8888 &>/dev/null; do sleep 2; echo Waiting for con
 wait
 
 docker stack deploy -c docker-platform-local.yml dclou
-while ! curl -s http://${BIP}:7070 &>/dev/null; do sleep 2; echo Waiting for admin server...; done &
-while ! curl -s http://${BIP}:8080 &>/dev/null; do sleep 2; echo Waiting for gateway server...; done &
-wait

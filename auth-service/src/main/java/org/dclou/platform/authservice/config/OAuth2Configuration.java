@@ -47,9 +47,10 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
         clients
                 .inMemory()
                 .withClient("order-service")
-                .resourceIds("auth", "catalog", "customer")
+                .resourceIds("auth", "catalog", "customer", "order")
                 .secret("123456")
-                .redirectUris("http://dripka.com:8083/login/order", "http://demo.zotona.com/login/order")
+                .redirectUris("http://dripka.com/order/login/order",
+                        "http://api.zotona.com/order/login/order")
                 .authorizedGrantTypes("authorization_code", "password", "refresh_token", "client_credentials")
                 .autoApprove(true)
                 .scopes("FOO")
