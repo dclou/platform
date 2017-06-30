@@ -1,4 +1,4 @@
-package org.dclou.platform.gatewayservice.prefilters;
+package org.dclou.platform.gatewayservice.filters;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

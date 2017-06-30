@@ -50,7 +50,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .antMatcher("/**")
                 .authorizeRequests()
-            .antMatchers("/", "/login**", "/logout**", "/oauth/token", "/oauth/check_token")
+            .antMatchers("/", "/login**", "/logout**", "/oauth/token", "/oauth/check_token", "/manage/**")
                 .permitAll()
             .anyRequest()
                 .authenticated();
@@ -59,7 +59,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth./*parentAuthenticationManager(authenticationManager).*/userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override

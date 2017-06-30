@@ -2,16 +2,16 @@ spring:
   application:
     name: zipkin-service
   cloud:
+    inetutils:
+      preferred-networks:
+        - 10.0
+      ignored-interfaces:
+        - eth2
+        - eth2@*
     config:
       enabled: true
       uri: http://config-service:8888
-#      #profile: production
-#      #label: master
-#      discovery:
-#              enabled: true
-#              service-id: config-service
       failFast: false
       retry:
         initialInterval: 3000
         maxAttempts: 100
-
