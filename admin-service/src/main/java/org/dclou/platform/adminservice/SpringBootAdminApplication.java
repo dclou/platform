@@ -8,18 +8,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
-import org.springframework.cloud.netflix.turbine.EnableTurbine;
 import org.springframework.cloud.netflix.turbine.TurbineHttpConfiguration;
 import org.springframework.context.annotation.Bean;
 
-@EnableHystrixDashboard
 @EnableAdminServer
 @EnableMicroservicesDashboardServer
 @SpringCloudApplication
 @EnableDiscoveryClient
 @EnableConfigurationProperties
-@EnableTurbine
 public class SpringBootAdminApplication extends TurbineHttpConfiguration {
 
 	@Bean
