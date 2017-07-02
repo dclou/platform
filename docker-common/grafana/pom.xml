@@ -1,29 +1,34 @@
 <?xml version="1.0"?>
+<!--
+  ~ Author A.Vilkov, Copyright (c) 2017
+  -->
+
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.github.dclou</groupId>
-    <artifactId>platform</artifactId>
+    <groupId>com.github.dclou.platform</groupId>
+    <artifactId>docker-common</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>com.github.dclou.platform</groupId>
-  <artifactId>docker-common</artifactId>
+  <groupId>com.github.dclou.platform.common</groupId>
+  <artifactId>grafana</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>docker-common</name>
+  <name>prometheus</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <modules>
-    <module>fluentd</module>
-    <module>prometheus</module>
-    <module>grafana</module>
-    <module>logstash</module>
-    <module>kibana</module>
-    <module>elasticsearch</module>
-  </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

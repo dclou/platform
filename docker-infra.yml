@@ -109,7 +109,7 @@ services:
 
 
   grafana:
-    image: grafana/grafana
+    image: dclou/platform-grafana:latest
     depends_on:
       - prometheus
     ports:
@@ -119,6 +119,7 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=foobar
       - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-simple-json-datasource,cloudflare-app
 
 
   fluentd:

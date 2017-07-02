@@ -47,5 +47,9 @@
       <groupId>io.zipkin.java</groupId>
       <artifactId>zipkin-autoconfigure-ui</artifactId>
     </dependency>
+    <dependency>
+      <groupId>io.zipkin.java</groupId>
+      <artifactId>zipkin-autoconfigure-metrics-prometheus</artifactId>
+    </dependency>
   </dependencies>
 </project>
