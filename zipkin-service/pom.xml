@@ -41,7 +41,7 @@
     <dependency>
       <groupId>io.zipkin.java</groupId>
       <artifactId>zipkin-autoconfigure-storage-elasticsearch-http</artifactId>
-      <version>1.23.2</version>
+      <version>${zipkin.version}</version>
     </dependency>
     <dependency>
       <groupId>io.zipkin.java</groupId>
@@ -50,6 +50,7 @@
     <dependency>
       <groupId>io.zipkin.java</groupId>
       <artifactId>zipkin-autoconfigure-metrics-prometheus</artifactId>
+      <version>${zipkin.version}</version>
     </dependency>
   </dependencies>
 </project>
