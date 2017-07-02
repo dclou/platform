@@ -1,0 +1,10 @@
+route:
+    receiver: 'slack'
+
+receivers:
+    - name: 'slack'
+      slack_configs:
+          - send_resolved: true
+            #username: 'prom-bot'
+            channel: '#general'
+            api_url: 'https://hooks.slack.com/services/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'
