@@ -70,9 +70,8 @@ scrape_configs:
         target_label: __name__
 
 ## ELASTICSEARCH ##
-  - job_name: elasticsearch
+  - job_name: 'elasticsearch'
       scrape_interval: 10s
-      metrics_path: "/_prometheus/metrics"
+      metrics_path: '/_prometheus/metrics'
       static_configs:
-      - targets:
-        - elasticsearch:9200
+        - targets: ['elasticsearch:9200']
