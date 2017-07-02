@@ -71,7 +71,7 @@ scrape_configs:
 
 ## ELASTICSEARCH ##
   - job_name: 'elasticsearch'
-      scrape_interval: 10s
-      metrics_path: '/_prometheus/metrics'
-      static_configs:
-        - targets: ['elasticsearch:9200']
+    scrape_interval: 10s
+    metrics_path: '/_prometheus/metrics'
+    static_configs:
+      - targets: ['elasticsearch:9200']
