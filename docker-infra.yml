@@ -61,17 +61,17 @@ services:
 #    volumes:
 #      - data-mongo:/data/db
 
-  # prometheus:
-  #   image: dclou/platform-prometheus:latest
-  #   volumes:
-  #     - data-prometheus:/prometheus
+  prometheus:
+   image: dclou/platform-prometheus:latest
+   volumes:
+     - data-prometheus:/prometheus
 
-  # grafana:
-  #   image: grafana/grafana
-  #   volumes:
-  #     - data-grafana:/var/lib/grafana
-  #   ports:
-  #     - "3000:3000"
+  grafana:
+   image: grafana/grafana
+   volumes:
+     - data-grafana:/var/lib/grafana
+   ports:
+     - "3000:3000"
 
   fluentd:
     image: dclou/platform-fluentd:latest
@@ -79,23 +79,25 @@ services:
       - data-logging:/fluentd/log
 
   elasticsearch:
-    image: dclou/platform-elasticsearch:latest
+    image: elasticsearch:latest
     volumes:
-      - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+       - data-elasticsearch:/usr/share/elasticsearch/config
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+       ES_JAVA_OPTS: "-Xmx1024m -Xms256m"
+    ports:
+       - "9200:9200"
+       - "9300:9300"
 
   kibana:
     image: dclou/platform-kibana:latest
+    volumes:
+      - data-kibana:/usr/share/kibana/config
     deploy:
       placement:
         constraints:
           - node.role == manager
-    volumes:
-      - ./docker-common/kibana/:/usr/share/kibana/config
+    environment:
+          - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
       - "5601:5601"
     depends_on:
