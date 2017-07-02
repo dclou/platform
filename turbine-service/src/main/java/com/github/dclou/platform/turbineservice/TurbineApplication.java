@@ -6,10 +6,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
-/**
- * Created by Alexander <iamtakingiteasy> Tumin on 2017-06-16.
- */
-
 @EnableAutoConfiguration
 @EnableEurekaClient
 @EnableTurbine
