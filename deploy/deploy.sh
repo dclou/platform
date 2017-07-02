@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 HOST="$1"
 
 ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 docker stack rm dclou'
