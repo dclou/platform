@@ -128,7 +128,7 @@ services:
       - data-logging:/fluentd/log
 
   elasticsearch:
-    image: elasticsearch:latest
+    image: dclou/platform-elasticsearch:latest
     volumes:
        - data-elasticsearch:/usr/share/elasticsearch/config
     environment:
