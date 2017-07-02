@@ -7,7 +7,7 @@ addons:
   ssh_known_hosts: 178.159.32.129
 
 script:
-  - mvn -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -B package
+  - mvn -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -B package -DskipDocker
 
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_20b9ef8ac179_key -iv $encrypted_20b9ef8ac179_iv -in secrets.tar.enc -out secrets.tar -d

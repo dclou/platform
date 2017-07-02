@@ -4,7 +4,7 @@ HOST="$1"
 
 ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 docker stack rm dclou'
 
-mvn -oStrictHostKeyChecking=no -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -s .travis.settings.xml -B deploy -DdeployDocker
+mvn -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -s .travis.settings.xml -B deploy -DdeployDocker
 
 ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.11 "docker images --format {{.ID}} | xargs docker rmi -f"'
 ssh -oStrictHostKeyChecking=no -p50022 user@$HOST 'ssh user@10.10.50.21 "docker images --format {{.ID}} | xargs docker rmi -f"'
