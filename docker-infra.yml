@@ -69,15 +69,12 @@ services:
       - '-config.file=/etc/prometheus/prometheus.yml'
       - '-storage.local.path=/prometheus'
       - '-alertmanager.url=http://alertmanager:9093'
-    expose:
-      - 9090
     ports:
       - 9090:9090
     links:
       - cadvisor:cadvisor
       - alertmanager:alertmanager
-    depends_on:
-      - cadvisor
+
 
   node-exporter:
     image: prom/node-exporter
@@ -88,8 +85,7 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
     command: '-collector.procfs=/host/proc -collector.sysfs=/host/sys -collector.filesystem.ignored-mount-points="^(/rootfs|/host|)/(sys|proc|dev|host|etc)($$|/)" collector.filesystem.ignored-fs-types="^(sys|proc|auto|cgroup|devpts|ns|au|fuse\.lxc|mqueue)(fs|)$$"'
-    expose:
-      - 9100
+
 
   alertmanager:
     image: prom/alertmanager
@@ -108,16 +104,11 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    expose:
-      - 8080
-
 
   grafana:
     image: dclou/platform-grafana:latest
     labels:
       org.label-schema.group: "monitoring"
-    depends_on:
-      - prometheus
     ports:
       - 3000:3000
     volumes:
@@ -138,6 +129,7 @@ services:
       org.label-schema.group: "monitoring"
     image: dclou/platform-elasticsearch:latest
     volumes:
+       - ./docker-common/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
        - data-elasticsearch:/usr/share/elasticsearch/config
     ports:
        - "9200:9200"
@@ -159,5 +151,4 @@ services:
           - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
       - "5601:5601"
-    depends_on:
-      - elasticsearch
+

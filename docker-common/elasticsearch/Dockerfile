@@ -1,7 +1,7 @@
 # https://github.com/elastic/elasticsearch-docker
 FROM docker.elastic.co/elasticsearch/elasticsearch:5.4.2
 
-ADD elasticsearch.yml /usr/share/elasticsearch/config/
+#COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 #ADD jvm.options /etc/elasticsearch/jvm.options
 
 # Add your elasticsearch plugins setup here
