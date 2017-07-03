@@ -132,7 +132,7 @@ services:
     volumes:
        - data-elasticsearch:/usr/share/elasticsearch/config
     environment:
-       ES_JAVA_OPTS: "-Xmx1024m -Xms256m"
+       ES_JAVA_OPTS: "-Xmx1024m -Xms512m"
     ports:
        - "9200:9200"
        - "9300:9300"
