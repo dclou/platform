@@ -1,7 +1,7 @@
 ## JVM configuration
 
--Xms1024m
--Xmx512m
+-Xms512m
+-Xmx1024m
 -XX:+UseConcMarkSweepGC
 -XX:CMSInitiatingOccupancyFraction=75
 -XX:+UseCMSInitiatingOccupancyOnly

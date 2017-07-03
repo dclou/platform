@@ -60,6 +60,8 @@ services:
 ####### MONITORING SECTION #######
   prometheus:
     image: dclou/platform-prometheus:latest
+    labels:
+      org.label-schema.group: "monitoring"
     volumes:
       - ./docker-common/prometheus/:/etc/prometheus/
       - data-prometheus:/prometheus
@@ -79,6 +81,8 @@ services:
 
   node-exporter:
     image: prom/node-exporter
+    labels:
+      org.label-schema.group: "monitoring"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -110,6 +114,8 @@ services:
 
   grafana:
     image: dclou/platform-grafana:latest
+    labels:
+      org.label-schema.group: "monitoring"
     depends_on:
       - prometheus
     ports:
@@ -128,11 +134,11 @@ services:
       - data-logging:/fluentd/log
 
   elasticsearch:
+    labels:
+      org.label-schema.group: "monitoring"
     image: dclou/platform-elasticsearch:latest
     volumes:
        - data-elasticsearch:/usr/share/elasticsearch/config
-    environment:
-       ES_JAVA_OPTS: "-Xmx1024m -Xms512m"
     ports:
        - "9200:9200"
        - "9300:9300"
