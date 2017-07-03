@@ -22,7 +22,7 @@ eureka:
       defaultZone: http://discovery-service:8761/eureka/
   instance:
     hostname: ${spring.application.name}
-    prefer-ip-address: true
+    prefer-ip-address: false
     leaseRenewalIntervalInSeconds: 30
     leaseExpirationDurationInSeconds: 60
     metadata-map:

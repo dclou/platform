@@ -33,10 +33,10 @@ scrape_configs:
 ### CUSTOM APP METRICS ####
   - job_name: 'order-service'
 
-    metrics_path: '/prometheus'
+    metrics_path: '/manage/prometheus1'
 
     static_configs:
-      - targets: ['order:8080']
+      - targets: ['order:8083']
 
 
 ### ZIPKIN #####
