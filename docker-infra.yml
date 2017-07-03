@@ -138,7 +138,6 @@ services:
       org.label-schema.group: "monitoring"
     image: dclou/platform-elasticsearch:latest
     volumes:
-       - ./docker-common/elasticsearch/:/usr/share/elasticsearch/config
        - data-elasticsearch:/usr/share/elasticsearch/config
     ports:
        - "9200:9200"
