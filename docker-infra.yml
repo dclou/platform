@@ -138,10 +138,15 @@ services:
       org.label-schema.group: "monitoring"
     image: dclou/platform-elasticsearch:latest
     volumes:
+       - ./docker-common/elasticsearch/:/usr/share/elasticsearch/config
        - data-elasticsearch:/usr/share/elasticsearch/config
     ports:
        - "9200:9200"
        - "9300:9300"
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
 
   kibana:
     image: dclou/platform-kibana:latest
